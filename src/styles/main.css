@@ -1,0 +1,175 @@
+/* src/styles/main.css */
+:root {
+  /* Тёмная тема (по умолчанию) */
+  --color-bg: #0a0a0a;
+  --color-bg-elevated: #141414;
+  --color-bg-warm: #1a1815;
+  --color-surface: #1f1c18;
+  
+  --color-text: #e8e4dc;
+  --color-text-muted: #8a857d;
+  --color-text-dim: #5a564f;
+  
+  --color-accent: #b8935a;
+  --color-accent-hover: #d4a96a;
+  --color-accent-dim: rgba(184, 147, 90, 0.15);
+  
+  --color-line: rgba(232, 228, 220, 0.08);
+  --color-line-strong: rgba(232, 228, 220, 0.15);
+  
+  /* Типографика */
+  --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Размеры */
+  --container-max: 1400px;
+  --container-padding: clamp(1.5rem, 5vw, 4rem);
+  
+  /* Переходы */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 800ms;
+}
+
+/* Светлая тема */
+[data-theme="light"] {
+  --color-bg: #faf8f5;
+  --color-bg-elevated: #ffffff;
+  --color-bg-warm: #f0ebe3;
+  --color-surface: #e8e2d8;
+  
+  --color-text: #1a1815;
+  --color-text-muted: #6b655c;
+  --color-text-dim: #9a9389;
+  
+  --color-accent: #8a6d3f;
+  --color-accent-hover: #a07f4a;
+  --color-accent-dim: rgba(138, 109, 63, 0.1);
+  
+  --color-line: rgba(26, 24, 21, 0.08);
+  --color-line-strong: rgba(26, 24, 21, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  font-size: 16px;
+  overflow-x: hidden;
+  transition: background-color var(--duration-normal) var(--ease-out),
+              color var(--duration-normal) var(--ease-out);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+button {
+  font-family: inherit;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Контейнер */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+/* Типографика */
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.overline {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.overline::before {
+  content: '';
+  width: 2rem;
+  height: 1px;
+  background: var(--color-accent);
+}
+
+/* Плавное появление */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Скроллбар */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-line-strong);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* Focus states для accessibility */
+:focus-visible {
+  outline: 1px solid var(--color-accent);
+  outline-offset: 3px;
+}
