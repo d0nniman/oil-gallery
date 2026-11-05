@@ -56,7 +56,7 @@ const submit = async () => {
   }, 300)
 }
 
-const hasError = (field: string) => computed(() => !!errors.value[field])
+// const hasError = (field: string) => computed(() => !!errors.value[field])
 </script>
 
 <template>

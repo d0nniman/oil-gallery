@@ -1,5 +1,5 @@
 // src/composables/useTheme.ts
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted } from 'vue'
 
 type Theme = 'dark' | 'light'
 
