@@ -174,7 +174,7 @@
 }
 
 .stat__number {
-  font-family: var(--font-serif);
+  /* font-family: var(--font-serif); */
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 400;
   color: var(--color-text);

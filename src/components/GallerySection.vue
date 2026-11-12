@@ -1,13 +1,15 @@
 <!-- src/components/GallerySection.vue -->
 <script setup lang="ts">
 import { ref } from 'vue'
+import DimensionBadge from './DimensionBadge.vue'
 
 interface Painting {
   id: number
   title: string
   year: string
   technique: string
-  size: string
+  width: number   // <-- Было: size: string
+  height: number  // <-- Было: size: string
   price: string
   image: string
   category: string
@@ -18,8 +20,9 @@ const paintings = ref<Painting[]>([
     id: 1,
     title: 'Тихий вечер',
     year: '2024',
-    technique: 'Нефть, масло на холсте',
-    size: '80 × 100 см',
+    technique: 'Смешанная техника: нефть и сусальное золото на холсте.',
+    width: 80,
+    height: 100,
     price: '85 000 ₽',
     image: 'https://images.unsplash.com/photo-1578926288207-a90a5366759d?w=800&q=80',
     category: 'Пейзаж'
@@ -29,7 +32,8 @@ const paintings = ref<Painting[]>([
     title: 'Чёрное золото',
     year: '2024',
     technique: 'Нефть, акрил на холсте',
-    size: '100 × 120 см',
+    width: 100,
+    height: 120,
     price: '120 000 ₽',
     image: 'https://images.unsplash.com/photo-1549887534-1541e9326642?w=800&q=80',
     category: 'Абстракция'
@@ -39,7 +43,8 @@ const paintings = ref<Painting[]>([
     title: 'Северное сияние',
     year: '2023',
     technique: 'Нефть, масло на холсте',
-    size: '90 × 90 см',
+    width: 90,
+    height: 90,
     price: '95 000 ₽',
     image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&q=80',
     category: 'Пейзаж'
@@ -49,7 +54,8 @@ const paintings = ref<Painting[]>([
     title: 'Память воды',
     year: '2024',
     technique: 'Нефть, масло на холсте',
-    size: '70 × 90 см',
+    width: 70,
+    height: 90,
     price: '72 000 ₽',
     image: 'https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=800&q=80',
     category: 'Абстракция'
@@ -59,7 +65,8 @@ const paintings = ref<Painting[]>([
     title: 'Рассвет в тумане',
     year: '2023',
     technique: 'Нефть, масло на холсте',
-    size: '60 × 80 см',
+    width: 60,
+    height: 80,
     price: '65 000 ₽',
     image: 'https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=800&q=80',
     category: 'Пейзаж'
@@ -69,7 +76,8 @@ const paintings = ref<Painting[]>([
     title: 'Грани времени',
     year: '2024',
     technique: 'Нефть, смешанная техника',
-    size: '100 × 100 см',
+    width: 100,
+    height: 100,
     price: '140 000 ₽',
     image: 'https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=800&q=80',
     category: 'Абстракция'
@@ -95,7 +103,7 @@ const closeModal = () => {
       <header class="collection__header reveal">
         <div class="collection__header-top">
           <span class="overline">Коллекция · 2024</span>
-          <span class="collection__count">06 работ</span>
+
         </div>
         <h2 class="collection__title">
           Избранные работы<br />
@@ -133,7 +141,7 @@ const closeModal = () => {
             </div>
             <h3 class="card__title">{{ painting.title }}</h3>
             <div class="card__footer">
-              <span class="card__size">{{ painting.size }}</span>
+              <dd>{{ painting.width }} x {{ painting.height }} см</dd>
               <span class="card__price">{{ painting.price }}</span>
             </div>
           </div>
@@ -162,15 +170,12 @@ const closeModal = () => {
 
                 <dl class="modal__details">
                   <div>
-                    <dt>Техника</dt>
                     <dd>{{ selected.technique }}</dd>
                   </div>
                   <div>
-                    <dt>Размер</dt>
-                    <dd>{{ selected.size }}</dd>
-                  </div>
-                  <div>
-                    <dt>Стоимость</dt>
+                    <dt><DimensionBadge
+                      :width="selected.width"
+                      :height="selected.height"/></dt>
                     <dd class="modal__price">{{ selected.price }}</dd>
                   </div>
                 </dl>
@@ -320,7 +325,7 @@ const closeModal = () => {
 }
 
 .card__title {
-  font-family: var(--font-serif);
+  /* font-family: var(--font-serif); */
   font-size: 1.5rem;
   font-weight: 400;
   margin-bottom: 1rem;
@@ -330,10 +335,10 @@ const closeModal = () => {
 .card__footer {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: flex-end;
   padding-top: 1rem;
   border-top: 1px solid var(--color-line);
-  font-size: 0.875rem;
+  margin-top: 0.5rem;
 }
 
 .card__size {
@@ -342,8 +347,11 @@ const closeModal = () => {
 
 .card__price {
   color: var(--color-text);
-  font-weight: 500;
+  /* font-family: var(--font-serif); */
+  font-size: 1rem;
+  font-weight: 300;
   letter-spacing: 0.02em;
+  padding-bottom: 0.25rem;
 }
 
 /* Modal */
@@ -458,7 +466,7 @@ const closeModal = () => {
 
 .modal__price {
   color: var(--color-accent);
-  font-family: var(--font-serif);
+  /* font-family: var(--font-serif); */
   font-size: 1.5rem;
 }
 

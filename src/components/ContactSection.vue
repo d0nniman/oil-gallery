@@ -220,7 +220,7 @@ a.contact__method:hover .contact__method-value {
 }
 
 .contact__method-value {
-  font-family: var(--font-serif);
+  /* font-family: var(--font-serif); */
   font-size: 1.375rem;
   color: var(--color-text);
   transition: color var(--duration-fast) var(--ease-out);

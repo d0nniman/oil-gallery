@@ -1,9 +1,9 @@
 <!-- src/components/Navigation.vue -->
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { useTheme } from '../composables/useTheme'
+// import { useTheme } from '../composables/useTheme'
 
-const { theme, toggleTheme, initTheme } = useTheme()
+// const { theme, toggleTheme, initTheme } = useTheme()
 
 const isScrolled = ref(false)
 const isMenuOpen = ref(false)
@@ -23,7 +23,7 @@ const closeMenu = () => {
 }
 
 onMounted(() => {
-  initTheme()
+  // initTheme()
   window.addEventListener('scroll', handleScroll, { passive: true })
 })
 
@@ -55,7 +55,7 @@ onUnmounted(() => {
       </nav>
 
       <div class="nav__actions">
-        <button 
+        <!-- <button 
           class="nav__theme-toggle"
           @click="toggleTheme"
           :aria-label="theme === 'dark' ? 'Переключить на светлую тему' : 'Переключить на тёмную тему'"
@@ -67,7 +67,7 @@ onUnmounted(() => {
           <svg v-else width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M17.5 10.5A7.5 7.5 0 1 1 9.5 2.5 5.5 5.5 0 0 0 17.5 10.5z"/>
           </svg>
-        </button>
+        </button> -->
 
         <a href="#contact" class="nav__cta" @click="closeMenu">
           Заказать работу
